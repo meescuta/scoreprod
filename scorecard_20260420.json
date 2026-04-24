@@ -1,0 +1,213 @@
+{
+  "schema_version": "1.0",
+  "modelo": "scorecard_woe_logistic_regression",
+  "gerado_em": "2026-04-20T18:30:26",
+  "commit_hash": "4aca4cc54125",
+  "features_usadas": [
+    "taxa_mencoes_terceiro_por_100msgs",
+    "razao_msgs_cliente_atendente",
+    "flag_mencao_terceiro_alguma_vez"
+  ],
+  "universo": {
+    "n_total": 194,
+    "n_calote": 7,
+    "n_pontual_ou_outro": 187,
+    "tem_chat_only": true,
+    "era_clara_split": {
+      "pre_clara": 178,
+      "pos_clara": 16
+    }
+  },
+  "bins_woe": {
+    "taxa_mencoes_terceiro_por_100msgs": {
+      "bins": [
+        "(-inf, 0.76)",
+        "[0.76, 1.64)",
+        "[1.64, inf)",
+        "Special",
+        "Missing"
+      ],
+      "woe": [
+        1.12152077946498,
+        -1.0165149264809092,
+        -0.053077416181051884,
+        0.0,
+        0.0
+      ],
+      "event_rate": [
+        0.012048192771084338,
+        0.09375,
+        0.0379746835443038,
+        0.0,
+        0.0
+      ],
+      "count": [
+        83,
+        32,
+        79,
+        0,
+        0
+      ],
+      "iv_contribution": [
+        0.3315726063047725,
+        0.27800790197109654,
+        0.0011758938649736445,
+        0.0,
+        0.0
+      ]
+    },
+    "razao_msgs_cliente_atendente": {
+      "bins": [
+        "(-inf, 0.34)",
+        "[0.34, 0.58)",
+        "[0.58, inf)",
+        "Special",
+        "Missing"
+      ],
+      "woe": [
+        -1.0879738904630538,
+        -0.39482670990310886,
+        1.2895125107041094,
+        0.0,
+        0.0
+      ],
+      "event_rate": [
+        0.1,
+        0.05263157894736842,
+        0.01020408163265306,
+        0.0,
+        0.0
+      ],
+      "count": [
+        20,
+        76,
+        98,
+        0,
+        0
+      ],
+      "iv_contribution": [
+        0.20612492347963132,
+        0.07359642262517838,
+        0.48467544328985623,
+        0.0,
+        0.0
+      ]
+    },
+    "flag_mencao_terceiro_alguma_vez": {
+      "bins": [
+        "(-inf, 0.50)",
+        "[0.50, inf)",
+        "Special",
+        "Missing"
+      ],
+      "woe": [
+        0.9914676512167819,
+        -0.33202580866407816,
+        0.0,
+        0.0
+      ],
+      "event_rate": [
+        0.0136986301369863,
+        0.049586776859504134,
+        0.0,
+        0.0
+      ],
+      "count": [
+        73,
+        121,
+        0,
+        0
+      ],
+      "iv_contribution": [
+        0.24010331966059578,
+        0.08040655565050629,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "coeficientes_lr": {
+    "taxa_mencoes_terceiro_por_100msgs": -1.164731627637069,
+    "razao_msgs_cliente_atendente": -0.9097960985920114,
+    "flag_mencao_terceiro_alguma_vez": 0.5910474842361282
+  },
+  "intercept": -0.03147206952744429,
+  "metricas": {
+    "auc_roc": 0.6080977845683728,
+    "auc_ci_95": [
+      0.46025185611879166,
+      0.7563407181054239
+    ],
+    "f1_calote": 0.08955223880597014,
+    "f1_ci_95": [
+      0.0,
+      0.1867083333333333
+    ],
+    "precision_calote": 0.05,
+    "precision_ci_95": [
+      0.0,
+      0.10909090909090909
+    ],
+    "recall_calote": 0.42857142857142855,
+    "recall_ci_95": [
+      0.0,
+      0.8571428571428571
+    ],
+    "baseline_naive_f1": 0.0,
+    "supera_baseline": true,
+    "iv_phase5_per_feature": {
+      "taxa_mencoes_terceiro_por_100msgs": 0.6107564021408426,
+      "razao_msgs_cliente_atendente": 0.7643967893946659,
+      "flag_mencao_terceiro_alguma_vez": 0.3205098753111021
+    },
+    "iv_phase4_per_feature": {
+      "taxa_mencoes_terceiro_por_100msgs": 1.06939729608726,
+      "razao_msgs_cliente_atendente": 1.095459672998374,
+      "flag_mencao_terceiro_alguma_vez": 0.5459527931727098
+    },
+    "iv_delta_relativo": {
+      "taxa_mencoes_terceiro_por_100msgs": 0.4288779255609727,
+      "razao_msgs_cliente_atendente": 0.30221366588288784,
+      "flag_mencao_terceiro_alguma_vez": 0.4129348190554817
+    }
+  },
+  "gates_pendentes": {
+    "n_calote_minimo": {
+      "atual": 7,
+      "minimo": 30,
+      "bloqueante": true,
+      "rationale": "D-08.1: scale de referência de crédito; N<30 positivos = ruído estatístico"
+    },
+    "holdout_temporal_pos_clara": {
+      "atual": 0,
+      "minimo": 5,
+      "bloqueante": true,
+      "rationale": "D-08.2: valida estabilidade cross-regime; QD-16 atestou 0 pós-Clara"
+    },
+    "revisao_manual_top_k": {
+      "aplicacoes_revisadas": 0,
+      "minimo": 50,
+      "bloqueante": true,
+      "rationale": "D-08.3: primeiras 50 aplicações revisadas por Diogo ME/fono antes de virar ação"
+    },
+    "drift_monitoring": {
+      "threshold_ks": 0.15,
+      "features_monitoradas": [
+        "taxa_mencoes_terceiro_por_100msgs",
+        "razao_msgs_cliente_atendente",
+        "flag_mencao_terceiro_alguma_vez"
+      ],
+      "bloqueante": false,
+      "rationale": "D-08.4: alerta, não bloqueio — KS>0.15 em qualquer feature entre janelas mensais"
+    }
+  },
+  "caveats": [
+    "IV divergiu >30% entre Fase 4 (N=178 pré-Clara) e Fase 5 (N=194) para taxa_mencoes_terceiro_por_100msgs: 1.069 -> 0.611 (delta relativo 42.9%)",
+    "IV divergiu >30% entre Fase 4 (N=178 pré-Clara) e Fase 5 (N=194) para razao_msgs_cliente_atendente: 1.095 -> 0.764 (delta relativo 30.2%)",
+    "IV divergiu >30% entre Fase 4 (N=178 pré-Clara) e Fase 5 (N=194) para flag_mencao_terceiro_alguma_vez: 0.546 -> 0.321 (delta relativo 41.3%)",
+    "N_calote pré-Clara = 7; modelo é exploratório (fase de descoberta de viabilidade, D-07)",
+    "Fallback nível 2 Fase 4: promoção por IV sem barreira 1 clássica (N_calote pré < 10 e 0 pós estrutural, QD-16)",
+    "0 calote pós-Clara (QD-16); scorecard pode subestimar calote em dados só-pós-Clara",
+    "SHAP values em log-odds; sigmoid para converter em probabilidade"
+  ]
+}
