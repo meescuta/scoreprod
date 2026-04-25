@@ -138,7 +138,7 @@ async def postar_nota_kommo(lead_id: str, score: int, tier: str):
             headers={"Authorization": f"Bearer {KOMMO_TOKEN}"},
         )
     async with httpx.AsyncClient() as client:
-    r = await client.post(
+        r = await client.post(
         url,
         json=payload,
         headers={"Authorization": f"Bearer {KOMMO_TOKEN}"},
