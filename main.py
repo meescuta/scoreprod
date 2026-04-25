@@ -123,7 +123,7 @@ def calcular_score(features: dict) -> tuple[int, str]:
     tier  = "A" if score < 25 else "B" if score < 50 else "C" if score < 75 else "D"
     return score, tier
 
-async def postar_nota_kommo(lead_id: str, score: int, tier: str):
+#async def postar_nota_kommo(lead_id: str, score: int, tier: str):
     texto = (
         f"Score de calote: {score} (tier {tier})\n"
         f"Modelo: v20260420 | Calculado em: {datetime.now().strftime('%d/%m/%Y %H:%M')}"
