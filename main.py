@@ -128,13 +128,12 @@ async def postar_nota_kommo(lead_id: str, score: int, tier: str):
         f"Score de calote: {score} (tier {tier})\n"
         f"Modelo: v20260420 | Calculado em: {datetime.now().strftime('%d/%m/%Y %H:%M')}"
     )
-    url = f"https://{KOMMO_SUB}.kommo.com/api/v4/leads/{lead_id}/notes"
+    url = f"https://{KOMMO_SUB}.kommo.com/api/v4/leads/notes"
     payload = [{
-    "entity_id": int(lead_id),
-    "entity_type": "leads",
-    "note_type": "common",
-    "params": {"text": texto}
-}]
+        "entity_id": int(lead_id),
+        "note_type": "common",
+        "params": {"text": texto}
+    }]
 
     async with httpx.AsyncClient() as client:
         r = await client.post(
