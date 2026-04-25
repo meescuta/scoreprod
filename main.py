@@ -124,21 +124,20 @@ def calcular_score(features: dict) -> tuple[int, str]:
     return score, tier
 
 async def postar_nota_kommo(lead_id: str, score: int, tier: str):
-    pass
-#     texto = (
-#         f"Score de calote: {score} (tier {tier})\n"
-#         f"Modelo: v20260420 | Calculado em: {datetime.now().strftime('%d/%m/%Y %H:%M')}"
-#     )
-#     url = f"https://{KOMMO_SUB}.kommo.com/api/v4/leads/{lead_id}/notes"
-#     payload = [{"note_type": "common", "params": {"text": texto}}]
+    texto = (
+        f"Score de calote: {score} (tier {tier})\n"
+        f"Modelo: v20260420 | Calculado em: {datetime.now().strftime('%d/%m/%Y %H:%M')}"
+    )
+    url = f"https://{KOMMO_SUB}.kommo.com/api/v4/leads/{lead_id}/notes"
+    payload = [{"note_type": 4, "params": {"text": texto}}]
 
-#     async with httpx.AsyncClient() as client:
-#         r = await client.post(
-#             url,
-#             json=payload,
-#             headers={"Authorization": f"Bearer {KOMMO_TOKEN}"},
-#         )
-#         r.raise_for_status()
+    async with httpx.AsyncClient() as client:
+        r = await client.post(
+            url,
+            json=payload,
+            headers={"Authorization": f"Bearer {KOMMO_TOKEN}"},
+        )
+        r.raise_for_status()
 
 # --- endpoints ---
 @app.post("/score")
