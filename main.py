@@ -137,14 +137,8 @@ async def postar_nota_kommo(lead_id: str, score: int, tier: str):
             json=payload,
             headers={"Authorization": f"Bearer {KOMMO_TOKEN}"},
         )
-    async with httpx.AsyncClient() as client:
-        r = await client.post(
-        url,
-        json=payload,
-        headers={"Authorization": f"Bearer {KOMMO_TOKEN}"},
-    )
-    print(f"Kommo response: {r.status_code} - {r.text}")
-    r.raise_for_status()
+        print(f"Kommo response: {r.status_code} - {r.text}")
+        r.raise_for_status()
 
 # --- endpoints ---
 @app.post("/score")
